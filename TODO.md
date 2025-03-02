@@ -1,0 +1,3 @@
+- [ ] handle the virtual fields you couldn't directly add to SQLite.
+  - duration, invoice total, start date and end date for project
+  - date & duration for session
