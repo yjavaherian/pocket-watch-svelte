@@ -1,3 +1,12 @@
-- [ ] handle the virtual fields you couldn't directly add to SQLite.
-  - duration, invoice total, start date and end date for project
-  - date & duration for session
+- [ ] create a UI
+- [ ] setup docker and a guide for self hosting
+- [ ] migrate to tauri
+- [ ] see if any of the options in svelte CLI is useful for this project:
+  - prettier
+  - eslint
+  - vitest
+  - playwright
+  - lucia
+  - mdsvex
+  - paraglide
+  - storybook
