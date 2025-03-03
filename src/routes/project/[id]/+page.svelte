@@ -1,6 +1,6 @@
 <script lang="ts">
     const { data } = $props();
-    const project = data.project;
+    const project = $derived(data.project);
 </script>
 
 <main>
@@ -11,6 +11,9 @@
         <p>end date: {project.endDate.toLocaleDateString()}</p>
         <p>hours: {project.duration.toFixed(2)}</p>
         <p>invoice: {project.invoiceTotal.toFixed(2)}</p>
+        <a href="/report/{project.id}" class="underline hover:text-blue-500"
+            >go to report</a
+        >
         <form action="?/new_session" method="post" class="border">
             <label>
                 <input type="text" name="desc" id="desc" />
@@ -22,7 +25,12 @@
         <h2>Sessions</h2>
         <ul>
             {#each project.sessions as session}
-                <li class="flex flex-row gap-2">
+                <li
+                    class={[
+                        "flex flex-row gap-2",
+                        session.status === "active" && "bg-stone-200",
+                    ]}
+                >
                     <p>{session.date.toLocaleDateString()}</p>
                     <p>{session.duration.toFixed(2)}</p>
                     <p>{session.desc}</p>
