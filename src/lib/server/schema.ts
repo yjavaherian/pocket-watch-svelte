@@ -1,4 +1,5 @@
 import { sqliteTable as table } from 'drizzle-orm/sqlite-core';
+import { relations } from "drizzle-orm/relations";
 import * as t from "drizzle-orm/sqlite-core";
 import { SQL, sql } from 'drizzle-orm';
 
@@ -13,6 +14,7 @@ export const project = table('project', {
 export const session = table('session', {
 	...id_column,
 	desc: t.text().notNull(),
+	status: t.text().$type<"active" | "paused" | "stopped">().default("paused"),
 	projectID: t.integer('project_id').notNull().references(() => project.id),
 
 })
@@ -25,3 +27,23 @@ export const block = table('block', {
 	date: t.text().generatedAlwaysAs((): SQL => sql`date(${block.start})`),
 	duration: t.real().generatedAlwaysAs((): SQL => sql`(julianday(${block.end}) - julianday(${block.start})) * 24`),
 })
+
+
+export const blockRelations = relations(block, ({ one }) => ({
+	session: one(session, {
+		fields: [block.sessionID],
+		references: [session.id]
+	}),
+}));
+
+export const sessionRelations = relations(session, ({ one, many }) => ({
+	blocks: many(block),
+	project: one(project, {
+		fields: [session.projectID],
+		references: [project.id]
+	}),
+}));
+
+export const projectRelations = relations(project, ({ many }) => ({
+	sessions: many(session),
+}));
