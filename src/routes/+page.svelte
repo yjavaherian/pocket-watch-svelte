@@ -1,2 +1,5 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h1 class="text-4xl">Pocket watch</h1>
+<p>
+    👈 please select or create a project from the side menu to start the
+    application
+</p>
