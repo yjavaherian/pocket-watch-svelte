@@ -11,33 +11,30 @@
 </script>
 
 <h1
-    class="text-4xl flex flex-row items-end p-4 bg-amber-200 font-[Doto] font-black text-amber-950border-b"
+    class="text-4xl flex flex-row items-end p-4 border-b font-[Doto] font-black border-stone"
 >
     <img src="/favicon.png" alt="logo" class="w-12 mr-2" />
     Pocket watch
 </h1>
-<main class="m-4">
-    <h2 class="text-xl font-bold">
+<main
+    class="m-4 flex flex-col border border-stone bg-white rounded-lg p-10 w-fit place-self-center"
+>
+    <!-- <h2 class="text-xl font-bold">
         Pocket watch is a time tracking app that helps you keep track of your
         time and bill your clients.
-    </h2>
-    <p class="mt-4">
-        you have not created any project yet, fill the form below to add a new
-        project 👇:
-    </p>
-    <form action="?/create" method="post" class="">
+    </h2> -->
+    <p class="text-lg mb-6">Create your first project</p>
+    <form action="?/create" method="post" class="flex flex-col">
         <label>
-            Project Name:
             <input
                 type="text"
                 name="name"
                 id="name"
-                class="bg-amber-100 rounded px-2 py-1"
+                placeholder="my awesome project 🤩 ..."
+                class="mb-6 p-1 w-64 border border-stone rounded-lg"
             />
         </label>
-        <button
-            type="submit"
-            class="bg-amber-200 rounded px-2 py-1 hover:bg-amber-300"
+        <button type="submit" class="bg-blue p-1 rounded-lg hover:bg-darkblue"
             >New Project <FolderPlus class="ml-1 inline" />
         </button>
     </form>

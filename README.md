@@ -11,6 +11,10 @@ a webapp you can use to keep track of how much time you put on your projects.
 - vite
 - typescript
 
+## Designed
+
+inspired by https://apps.robbb.in/stunde
+
 ## Development
 
 ```bash

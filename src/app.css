@@ -4,4 +4,13 @@
 
 @theme {
     --font-sans: "Inter"; 
+    --color-*: initial;
+    --color-white: #f6f6f6;
+    --color-stone: oklch(0.709 0.01 56.259);
+    --color-pampas: #f5f2f0;
+    /* --color-cerulean-50: #f0f6fe; */
+    /* --color-cerulean-100: #dcebfd; */
+    --color-blue:  #c1dcfc ;
+    --color-darkblue: #96c7fa ;
+    --color-red: oklch(0.704 0.191 22.216);
 }

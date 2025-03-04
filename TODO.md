@@ -1,5 +1,5 @@
 - [x] create a UI
-- [ ] create a better UI
+- [x] create a better UI
 - [ ] setup docker and a guide for self hosting
 - [ ] migrate to tauri
 - [ ] see if any of the options in svelte CLI is useful for this project:
@@ -10,4 +10,3 @@
   - lucia
   - mdsvex
   - paraglide
-  - storybook

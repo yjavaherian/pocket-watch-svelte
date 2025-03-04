@@ -5,8 +5,10 @@
         CircleCheckBig,
         DollarSign,
         Hourglass,
+        MoveRight,
         Pause,
         Play,
+        Plus,
         Slash,
         Square,
     } from "lucide-svelte";
@@ -15,71 +17,72 @@
     const project = $derived(data.project);
 </script>
 
-<main>
-    <header class="flex flex-col gap-2">
-        <h1 class="text-4xl font-bold">{project.name}</h1>
-        <h2 class="text-lg">
-            from {project.startDate.toLocaleDateString()} to {project.endDate.toLocaleDateString()}
-        </h2>
-        <h2 class="text-lg">
-            {project.duration.toFixed(2)}
-            <Hourglass class="inline w-4" />
-            <Asterisk class="inline w-4" />
+<header class="flex flex-col gap-2 border-b border-stone pb-4">
+    <h1 class="text-3xl font-bold capitalize">{project.name}</h1>
+    <h2 class="py-1 border border-stone bg-white rounded-lg w-fit px-4">
+        {project.startDate.toLocaleDateString()}
+        <MoveRight class="w-6 inline " />
+        {project.endDate.toLocaleDateString()}
+    </h2>
+    <h2 class="py-1 border border-stone bg-white rounded-lg w-fit px-4">
+        {project.duration.toFixed(2)} Hours
+        <!-- <Hourglass class="inline h-4" /> -->
+        <!-- <Asterisk class="inline w-4" />
             {project.billingRate}
             <Hourglass class="inline w-4" />
             <Slash class="inline w-4" />
             <DollarSign class="inline w-4" /> =
             {project.invoiceTotal.toFixed(2)}
-            <DollarSign class="inline w-4" />
-        </h2>
+            <DollarSign class="inline w-4" /> -->
+    </h2>
 
-        <a
-            href="/report/{project.id}"
-            class="px-2 py-1 bg-blue-100 hover:underline rounded-lg text-lg w-fit"
-            >export to HTML</a
-        >
-        <form
-            action="?/new_session"
-            method="post"
-            class="flex flex-row items-center rounded-lg bg-amber-100 py-1 px-2"
-        >
-            <label>
-                start a new task:
-                <input
-                    type="text"
-                    name="desc"
-                    id="desc"
-                    class="ml-2"
-                    placeholder="session description..."
-                    autocomplete="off"
-                />
-            </label>
-            <button
-                type="submit"
-                class="text-amber-500 h-8 hover:text-amber-600"
-                >Add Task <CircleCheckBig class="ml-1 inline" />
-            </button>
-        </form>
-    </header>
-    <table class="mt-4">
+    <a
+        href="/report/{project.id}"
+        class="py-1 bg-blue hover:bg-darkblue rounded-lg w-fit px-4 hover:underline decoration-wavy"
+        >export to HTML</a
+    >
+    <form
+        action="?/new_session"
+        method="post"
+        class="flex flex-row items-center border border-stone bg-white rounded-lg py-1 px-4 w-fit"
+    >
+        <label>
+            start a new task:
+            <input
+                type="text"
+                name="desc"
+                id="desc"
+                class="ml-2"
+                placeholder="session description..."
+                autocomplete="off"
+            />
+        </label>
+        <button type="submit">
+            <Plus />
+        </button>
+    </form>
+</header>
+<main class="mt-4 border border-stone bg-white rounded-lg p-4">
+    <table class="table-auto">
         <thead>
-            <tr class="text-left bg-amber-50">
-                <th class="w-28">Date</th>
-                <th class="w-40">Duration (Hour)</th>
-
-                <th class="w-32">Status</th>
-                <th class="w-24">Actions</th>
-                <th class="w-32">Desc</th>
-                <th class="w-32">Blocks</th>
+            <tr class="text-left border-b border-stone">
+                <th class="pb-2 px-4 min-w-28">Date</th>
+                <th class="pb-2 px-4 min-w-28">Duration (H)</th>
+                <th class="pb-2 px-4 min-w-28">Status</th>
+                <th class="pb-2 px-4 min-w-28">Actions</th>
+                <th class="pb-2 px-4 min-w-28">Desc</th>
+                <th class="pb-2 px-4 min-w-28">Blocks</th>
             </tr>
         </thead>
-        <tbody class="[&>*:nth-child(odd)]:bg-stone-100">
+        <tbody class="">
             {#each project.sessions as session}
-                <tr class={[session.status === "active" && "bg-stone-200"]}>
-                    <td class="w-28">{session.date.toLocaleDateString()}</td>
-                    <td class="w-40">{session.duration.toFixed(2)}</td>
-                    <td class="w-32">{session.status}</td>
-                    <td class="w-24">
+                <tr class={session.status === "active" ? "bg-blue" : ""}>
+                    <td class="py-2 px-4"
+                        >{session.date.toLocaleDateString()}</td
+                    >
+                    <td class="px-4">{session.duration.toFixed(2)}</td>
+                    <td class="px-4">{session.status}</td>
+                    <td class="px-4">
                         {#if session.status === "active"}
                             <form action="?/pause" method="post" class="inline">
                                 <input
@@ -87,8 +90,11 @@
                                     name="id"
                                     value={session.id}
                                 />
-                                <button class="underline" type="submit"
-                                    ><Pause class="inline h-6" /></button
+                                <button
+                                    class="bg-white rounded p-1 text-sm"
+                                    type="submit"
+                                >
+                                    <Pause class="inline h-5" /></button
                                 >
                             </form>
                             <form action="?/stop" method="post" class="inline">
@@ -97,8 +103,10 @@
                                     name="id"
                                     value={session.id}
                                 />
-                                <button class="underline" type="submit"
-                                    ><Square class="inline h-6" /></button
+                                <button
+                                    class="bg-white rounded p-1 text-sm"
+                                    type="submit"
+                                    ><Square class="inline h-5" /></button
                                 >
                             </form>
                         {:else if session.status === "paused"}
@@ -112,8 +120,10 @@
                                     name="id"
                                     value={session.id}
                                 />
-                                <button class="underline" type="submit"
-                                    ><Play class="inline h-6" /></button
+                                <button
+                                    class="bg-blue rounded p-1 text-sm"
+                                    type="submit"
+                                    ><Play class="inline h-5" /></button
                                 >
                             </form>
                             <form action="?/stop" method="post" class="inline">
@@ -122,22 +132,29 @@
                                     name="id"
                                     value={session.id}
                                 />
-                                <button class="underline" type="submit"
-                                    ><Square class="inline h-6" /></button
+                                <button
+                                    class="bg-blue rounded p-1 text-sm"
+                                    type="submit"
+                                    ><Square class="inline h-5" /></button
                                 >
                             </form>
                         {/if}
                     </td>
-                    <td class="w-96 pr-2 py-1">
+                    <td class="px-4">
                         <!-- <span class="overflow-ellipsis"> -->
                         {session.desc}
                         <!-- </span> -->
                     </td>
-                    <td class="">
-                        <ul class="flex flex-row gap-4 w-96 overflow-x-auto">
+                    <td class="px-4">
+                        <ul
+                            class="flex flex-row gap-4 overflow-x-auto max-w-96"
+                        >
                             {#each session.blocks as block}
                                 <li
-                                    class="flex flex-row bg-blue-100 px-1 rounded-lg"
+                                    class="select-none flex flex-row {session.status ==
+                                    'active'
+                                        ? 'bg-white'
+                                        : 'bg-blue'} px-1 rounded-lg"
                                 >
                                     <p>
                                         {new Date(
