@@ -1,5 +1,6 @@
-import { createProject, getProject, pauseSession, resumeSession, startNewSession, stopSession } from '$lib/server/actions.js';
+import { createProject, deleteProject, getProject, pauseSession, resumeSession, startNewSession, stopSession } from '$lib/server/actions.js';
 import { session } from '$lib/server/schema';
+import { redirect } from '@sveltejs/kit';
 import { createInsertSchema } from 'drizzle-zod';
 
 export async function load({ params }) {
@@ -39,5 +40,14 @@ export const actions = {
    create: async ({ request }) => {
       const data = Object.fromEntries(await request.formData());
       await createProject(data)
+   },
+   delete: async ({ request }) => {
+      const data = await request.formData();
+      const projectId = data.get('id');
+      if (typeof projectId !== 'string') {
+         throw new Error("Session ID is missing or invalid.");
+      }
+      await deleteProject(parseInt(projectId))
+      redirect(303, '/')
    }
 }

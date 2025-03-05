@@ -15,7 +15,7 @@ export const session = table('session', {
 	...id_column,
 	desc: t.text().notNull(),
 	status: t.text().$type<"active" | "paused" | "stopped">().default("paused"),
-	projectID: t.integer('project_id').notNull().references(() => project.id),
+	projectID: t.integer('project_id').notNull().references(() => project.id, { onDelete: 'cascade' }),
 
 })
 
@@ -23,7 +23,7 @@ export const block = table('block', {
 	...id_column,
 	start: t.text().notNull(),
 	end: t.text().notNull(),
-	sessionID: t.integer('session_id').notNull().references(() => session.id),
+	sessionID: t.integer('session_id').notNull().references(() => session.id, { onDelete: 'cascade' }),
 	date: t.text().generatedAlwaysAs((): SQL => sql`date(${block.start})`),
 	duration: t.real().generatedAlwaysAs((): SQL => sql`(julianday(${block.end}) - julianday(${block.start})) * 24`),
 })

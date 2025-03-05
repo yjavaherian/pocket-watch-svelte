@@ -45,6 +45,9 @@ export async function createProject(data: any) {
     const z = createInsertSchema(project)
     await db.insert(project).values(z.parse(data));
 }
+export async function deleteProject(projectID: number) {
+    await db.delete(project).where(eq(project.id, projectID));
+}
 
 export async function startNewSession(projectID: number, desc: string) {
     const new_seesion = (await db.insert(session).values({ projectID, desc }).returning())[0];

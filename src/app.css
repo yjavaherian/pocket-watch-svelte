@@ -3,20 +3,22 @@
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Inter"; 
+    --font-sans: "Inter";
     --color-*: initial;
     --color-white: #f6f6f6;
     --color-darkwhite: #efefef;
     --color-stone: oklch(0.709 0.01 56.259);
     --color-pampas: #f5f2f0;
-    --color-blue:  #c1dcfc ;
-    --color-darkblue: #96c7fa ;
+    --color-blue: #c1dcfc;
+    --color-darkblue: #96c7fa;
     --color-red: oklch(0.704 0.191 22.216);
+    --color-darkred: #84181a;
 }
 
 body {
     background-color: #eeeae6;
 }
+
 button {
     cursor: pointer;
 }

@@ -1,5 +1,14 @@
-- [x] create a UI
-- [x] create a better UI
+- [x] add a dialog component to UI
+- [ ] add ability to delete:
+      - [x] a project
+      - [ ] a session
+      - [ ] a block
+- [ ] add the functionality to manually add time blocks to a session.
+- [ ] refactor UI into composable reusable pieces
+- [ ] remove billing rate and related functionality from the app
+- [ ] add notification system to that people dont forget to manage their
+      sessions
+- [ ] maybe add *update* functioanlity to the system as well.
 - [ ] setup docker and a guide for self hosting
 - [ ] migrate to tauri
 - [ ] see if any of the options in svelte CLI is useful for this project:

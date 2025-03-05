@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { FocusEventHandler } from "svelte/elements";
 
-    const { children, btn } = $props(); // 👈 fetch snippets here
+    let { children, btn, class: cls, ...props } = $props();
 
     let isOpen = $state(false);
 
@@ -22,12 +22,15 @@
     };
 </script>
 
-<div onfocusout={focusOutHandler}>
+<div onfocusout={focusOutHandler} class={[cls, "relative"]} {...props}>
     <button onclick={clickHandler}>
         {@render btn()}
-        <!-- 👈 use snippets like this -->
     </button>
-    <div class={isOpen ? "" : "hidden"}>
+    <div
+        class="absolute right-0 z-10 origin-top-right focus:outline-hidden {isOpen
+            ? ''
+            : 'hidden'}"
+    >
         {@render children()}
     </div>
 </div>

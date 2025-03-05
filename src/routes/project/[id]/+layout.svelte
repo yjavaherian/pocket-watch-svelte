@@ -1,11 +1,6 @@
 <script>
     import { page } from "$app/state";
-    import {
-        Folder,
-        FolderOpen,
-        FolderPlus,
-        SquareCheckBig,
-    } from "lucide-svelte";
+    import { Folder, FolderOpen, FolderPlus, Trash } from "lucide-svelte";
     let { children, data } = $props();
 </script>
 
@@ -25,7 +20,7 @@
                 {#each data.projects as project}
                     <a
                         href="/project/{project.id}/"
-                        class="border border-stone rounded-lg py-1 px-2 {(page
+                        class="flex flex-row items-center gap-2 border border-stone rounded-lg py-1 px-2 {(page
                             .params.id ?? null) == project.id.toString()
                             ? 'bg-blue'
                             : 'bg-white'}"
