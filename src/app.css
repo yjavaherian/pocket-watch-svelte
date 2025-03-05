@@ -6,6 +6,7 @@
     --font-sans: "Inter"; 
     --color-*: initial;
     --color-white: #f6f6f6;
+    --color-darkwhite: #efefef;
     --color-stone: oklch(0.709 0.01 56.259);
     --color-pampas: #f5f2f0;
     --color-blue:  #c1dcfc ;
