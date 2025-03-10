@@ -55,6 +55,10 @@ export async function startNewSession(projectID: number, desc: string) {
     return await db.query.session.findFirst({ where: eq(session.id, new_seesion.id), with: { blocks: true } })
 }
 
+export async function deleteSession(sessionID: number) {
+    await db.delete(session).where(eq(session.id, sessionID));
+}
+
 export async function stopSession(sessionID: number) {
     const _session = await db.query.session.findFirst({ where: eq(session.id, sessionID), with: { blocks: true } })
     assert(_session)

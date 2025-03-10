@@ -1,4 +1,4 @@
-import { createProject, deleteProject, getProject, pauseSession, resumeSession, startNewSession, stopSession } from '$lib/server/actions.js';
+import { createProject, deleteProject, deleteSession, getProject, pauseSession, resumeSession, startNewSession, stopSession } from '$lib/server/actions.js';
 import { session } from '$lib/server/schema';
 import { redirect } from '@sveltejs/kit';
 import { createInsertSchema } from 'drizzle-zod';
@@ -12,6 +12,14 @@ export const actions = {
       const z = createInsertSchema(session)
       const data = z.parse({ ...Object.fromEntries(await request.formData()), projectID: parseInt(params.id) });
       await startNewSession(data.projectID, data.desc);
+   },
+   delete_session: async ({ request }) => {
+      const data = await request.formData();
+      const sessionId = data.get('id');
+      if (typeof sessionId !== 'string') {
+         throw new Error("Session ID is missing or invalid.");
+      }
+      await deleteSession(parseInt(sessionId))
    },
    stop: async ({ request }) => {
       const data = await request.formData();
@@ -45,7 +53,7 @@ export const actions = {
       const data = await request.formData();
       const projectId = data.get('id');
       if (typeof projectId !== 'string') {
-         throw new Error("Session ID is missing or invalid.");
+         throw new Error("Project ID is missing or invalid.");
       }
       await deleteProject(parseInt(projectId))
       redirect(303, '/')
