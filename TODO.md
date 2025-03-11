@@ -1,19 +1,18 @@
 ## REARRANGING
 
 - [ ] enforce UI rules
-- [ ] remove billing rate and related functionality from codebase.
+- [x] remove billing rate and related functionality from codebase.
 
 ## FEATURES
 
-- [ ] add delete blocks functionality to UI.
-- [ ] add the functionality to manually add time blocks to a session.
+- [x] add a block view to projects page that includes: 1. the ability to delete blocks 2. the ability to manually create blocks
 - [ ] add notification system to that people dont forget to manage their
       sessions.
 - [ ] maybe add _update_ functioanlity to the system as well.
 
 ## DEPLOYMENT
 
-- [x] setup docker and a guide for self hosting.
+- [ ] fix the flaky ORIGIN solution for docker
 
 ## EXPLORATION
 

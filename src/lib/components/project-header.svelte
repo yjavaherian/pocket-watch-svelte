@@ -9,7 +9,6 @@
     class: cls,
   }: { project: getProjectReturnType; class?: string } = $props();
   let open = $state(false);
-  $inspect(open);
 </script>
 
 <header class={twMerge("flex flex-col gap-2", cls)}>
@@ -79,21 +78,4 @@
     class="w-fit rounded-lg border border-stone-500 bg-gray-300 px-4 py-1 decoration-wavy hover:bg-gray-400 hover:underline"
     >export to HTML</a
   >
-  <Paper class="w-fit px-4 py-1">
-    <form action="?/new_session" method="post">
-      start a new task:
-      <input
-        type="text"
-        name="desc"
-        id="desc"
-        class="outline-none"
-        placeholder="session description..."
-        autocomplete="off"
-      />
-
-      <button type="submit" class="align-bottom">
-        <Plus />
-      </button>
-    </form>
-  </Paper>
 </header>

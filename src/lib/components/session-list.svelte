@@ -53,16 +53,16 @@
   </Dialog.Portal>
 </Dialog.Root>
 
-<table class="table-auto">
+<table class="w-full table-auto">
   <thead>
     <tr class="border-b border-stone-500 text-left">
       <th class="min-w-10"></th>
-      <th class="min-w-28 px-4 pb-2">Date</th>
-      <th class="min-w-28 px-4 pb-2">Duration (H)</th>
-      <th class="min-w-28 px-4 pb-2">Status</th>
-      <th class="min-w-28 px-4 pb-2">Actions</th>
-      <th class="min-w-28 px-4 pb-2">Desc</th>
-      <th class="min-w-28 px-4 pb-2">Blocks</th>
+      <th class="px-4 pb-2">Date</th>
+      <th class="px-4 pb-2">Duration (H)</th>
+      <th class="px-4 pb-2">Status</th>
+      <th class="px-4 pb-2">Actions</th>
+      <th class="px-4 pb-2">Desc</th>
+      <th class="px-4 pb-2">Blocks</th>
     </tr>
   </thead>
   <tbody>
