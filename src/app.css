@@ -1,22 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
     --font-sans: "Inter";
     --color-*: initial;
-    --color-white: #f6f6f6;
-    --color-darkwhite: #efefef;
-    --color-stone: oklch(0.709 0.01 56.259);
-    --color-pampas: #f5f2f0;
-    --color-blue: #c1dcfc;
-    --color-darkblue: #96c7fa;
-    --color-red: oklch(0.704 0.191 22.216);
-    --color-darkred: #84181a;
+
+    --color-sand-50: #f6f6f6;
+    --color-sand-100: #efefef;
+    --color-sand-200: #dcdcdc;
+
+    --color-pampas-50: #f5f2f0;
+    --color-pampas-100: #eeeae6;
+    --color-pampas-200: #dcd4cc;
+    --color-pampas-700: #785f56;
+    --color-pampas-950: #2b221f;
+
+    --color-stone-100: #f1f0ef;
+    --color-stone-400: #b9b4b0;
+    --color-stone-500: #a8a29e;
+
+    --color-gray-50: #f5f7f8;
+    --color-gray-300: #b5bdc5;
+    --color-gray-400: #a3adb7;
+    --color-gray-900: #323439;
+
+    --color-eunry-400: #d19c99;
+    --color-eunry-500: #bd7a76;
+    --color-eunry-600: #a75f5b;
 }
 
 body {
-    background-color: #eeeae6;
+    background-color: var(--color-pampas-100);
 }
 
 button {
@@ -28,10 +43,10 @@ ul::-webkit-scrollbar {
 }
 
 ul::-webkit-scrollbar-track {
-    background-color: #f5f2f0;
+    background-color: var(--color-pampas-100);
 }
 
 ul::-webkit-scrollbar-thumb {
-    background-color: #96c7fa;
+    background-color: var(--color-pampas-700);
     border-radius: 0.5rem;
 }
