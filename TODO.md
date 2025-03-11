@@ -13,7 +13,7 @@
 
 ## DEPLOYMENT
 
-- [ ] setup docker and a guide for self hosting.
+- [x] setup docker and a guide for self hosting.
 
 ## EXPLORATION
 

@@ -47,6 +47,5 @@ pnpm preview
 build an image and run it with:
 
 ```bash
-docker build -t pocket-watch .
-docker run -p 3000:3000 pocket-watch
+docker compose up -d
 ```

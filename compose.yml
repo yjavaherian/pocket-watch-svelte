@@ -1,0 +1,11 @@
+services:
+  pocket-watch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pocket-watch
+    restart: unless-stopped
+    volumes:
+      - ./deploy.db:/app/local.db
+    ports:
+      - "3000:3000"
