@@ -1,3 +1,7 @@
+## BUGS
+
+- [x] fix the form bug on dialogs
+
 ## REARRANGING
 
 - [ ] enforce UI rules

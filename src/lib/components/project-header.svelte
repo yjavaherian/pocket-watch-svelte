@@ -4,6 +4,7 @@
   import Paper from "$lib/ui/paper.svelte";
   import type { getProjectReturnType } from "$lib/server/actions";
   import { twMerge } from "tailwind-merge";
+  import { wait } from "$lib/utils";
   const {
     project,
     class: cls,
@@ -24,7 +25,14 @@
           <span>
             Are you sure you want to delete project "{project.name}"?
           </span>
-          <form action="?/delete" method="post" class="mt-10 ml-auto block">
+          <form
+            action="?/delete"
+            method="post"
+            class="mt-10 ml-auto block"
+            onsubmit={() => {
+              wait(100).then(() => (open = false));
+            }}
+          >
             <input type="hidden" name="id" value={project.id} />
             <Dialog.Close
               class="bg-sand-50 hover:bg-sand-200 w-18 rounded border border-stone-500 p-1"
@@ -34,7 +42,6 @@
             <button
               type="submit"
               class="bg-eunry-500 hover:bg-eunry-600 text-sand-50 w-18 rounded p-1"
-              onclick={() => (open = false)}
             >
               Delete
             </button>

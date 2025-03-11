@@ -1,5 +1,6 @@
 <script lang="ts">
   import Paper from "$lib/ui/paper.svelte";
+  import { wait } from "$lib/utils";
   import { Dialog, DropdownMenu } from "bits-ui";
   import {
     ChevronRight,
@@ -33,6 +34,9 @@
           action="?/delete_session"
           method="post"
           class="mt-10 ml-auto block"
+          onsubmit={() => {
+            wait(100).then(() => (open = false));
+          }}
         >
           <input type="hidden" name="id" value={selectedSessionId} />
           <Dialog.Close
@@ -43,7 +47,6 @@
           <button
             type="submit"
             class="bg-eunry-500 hover:bg-eunry-600 text-sand-50 w-18 rounded p-1"
-            onclick={() => (open = false)}
           >
             Delete
           </button>

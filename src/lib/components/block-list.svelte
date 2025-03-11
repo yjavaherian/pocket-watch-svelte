@@ -1,7 +1,9 @@
 <script lang="ts">
   import Paper from "$lib/ui/paper.svelte";
+  import { wait } from "$lib/utils";
   import { Dialog, DropdownMenu } from "bits-ui";
   import { EllipsisVertical, Trash } from "lucide-svelte";
+
   const { sessions } = $props();
   const blocks = $derived(
     sessions.flatMap((s) => s.blocks.map((b) => ({ ...b, desc: s.desc }))),
@@ -20,7 +22,14 @@
     >
       <Paper class="px-8 py-4">
         <span> Are you sure you want to delete this block? </span>
-        <form action="?/delete_block" method="post" class="mt-10 ml-auto block">
+        <form
+          action="?/delete_block"
+          method="post"
+          class="mt-10 ml-auto block"
+          onsubmit={() => {
+            wait(100).then(() => (open = false));
+          }}
+        >
           <input type="hidden" name="id" value={selectedBlockId} />
           <Dialog.Close
             class="bg-sand-50 hover:bg-sand-200 w-18 rounded border border-stone-500 p-1"
@@ -30,7 +39,6 @@
           <button
             type="submit"
             class="bg-eunry-500 hover:bg-eunry-600 text-sand-50 w-18 rounded p-1"
-            onclick={() => (open = false)}
           >
             Delete
           </button>
