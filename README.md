@@ -1,37 +1,52 @@
 # Pocket Watch
 
-a webapp you can use to keep track of how much time you put on your projects.
+a minimal web app that helps you keep track of how you spend your time on your projects.
 
-## Stack
+## Stack ⚙️
 
-- pnpm (package manager)
-- svelte (front library)
-- sveltekit (fullstack library)
-- drizzle ORM (ORM)
-- vite
-- typescript
+- fullstack framework: sveltekit
+- frontend library: svelte
+- frontend stack
 
-## Designed
+  - Components library: bits ui
+  - CSS: tailwindCSS
+  - Icon set: lucide
 
-inspired by https://apps.robbb.in/stunde
+- development tools
+  - language: typescript
+  - package manager: pnpm
+  - build tool: vite
+  - formatter: prettier
+  - test framework: storybook
+  - deployment: docker
+- backend stack
+  - database: sqlite
+  - ORM: drizzle
+
+## Insired by
+
+- stunde https://apps.robbb.in/stunde
+- epomaker galaxy 70
 
 ## Development
 
 ```bash
-pnpm install
-npm run dev
+pnpm i
+pnpm dev
 ```
 
 ## Building
 
 ```bash
-pnpm run build
-pnpm run preview
+pnpm build
+pnpm preview
 ```
 
 ## Docker
+
 build an image and run it with:
-``` bash
+
+```bash
 docker build -t pocket-watch .
 docker run -p 3000:3000 pocket-watch
 ```
