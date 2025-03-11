@@ -12,6 +12,11 @@
   const { sessions } = $props();
   let open = $state(false);
   let selectedSessionId: string | null = $state(null);
+  function statusColor(status: string) {
+    if (status == "stopped") return "bg-eunry-400 text-eunry-50";
+    if (status == "active") return "bg-green-400 text-green-50";
+    if (status == "paused") return "bg-yellow-400 text-yellow-50";
+  }
 </script>
 
 <Dialog.Root bind:open>
@@ -85,7 +90,11 @@
         </td>
         <td class="px-4 py-2"> {session.date.toLocaleDateString()}</td>
         <td class="px-4">{session.duration.toFixed(2)}</td>
-        <td class="px-4">{session.status}</td>
+        <td class="px-4">
+          <span class="rounded-xl px-2 py-1 {statusColor(session.status)}">
+            {session.status}
+          </span>
+        </td>
         <td class="px-4">
           {#if session.status === "active"}
             <form action="?/pause" method="post" class="inline">
