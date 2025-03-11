@@ -1,6 +1,7 @@
 import {
   createNewBlock,
   createProject,
+  deleteBlock,
   deleteProject,
   deleteSession,
   getProject,
@@ -44,6 +45,14 @@ export const actions = {
       throw new Error("Session ID is missing or invalid.");
     }
     await deleteSession(parseInt(sessionId));
+  },
+  delete_block: async ({ request }) => {
+    const data = await request.formData();
+    const blockId = data.get("id");
+    if (typeof blockId !== "string") {
+      throw new Error("Block ID is missing or invalid.");
+    }
+    await deleteBlock(parseInt(blockId));
   },
   stop: async ({ request }) => {
     const data = await request.formData();

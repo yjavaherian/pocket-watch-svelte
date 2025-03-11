@@ -84,6 +84,10 @@ export async function deleteSession(sessionID: number) {
   await db.delete(session).where(eq(session.id, sessionID));
 }
 
+export async function deleteBlock(blockId: number) {
+  await db.delete(block).where(eq(block.id, blockId));
+}
+
 export async function stopSession(sessionID: number) {
   const _session = await db.query.session.findFirst({
     where: eq(session.id, sessionID),
@@ -141,13 +145,11 @@ export async function resumeSession(sessionID: number) {
     .update(session)
     .set({ status: "active" })
     .where(eq(session.id, sessionID));
-  await db
-    .insert(block)
-    .values({
-      sessionID: _session.id,
-      start: new Date().toISOString(),
-      end: new Date().toISOString(),
-    });
+  await db.insert(block).values({
+    sessionID: _session.id,
+    start: new Date().toISOString(),
+    end: new Date().toISOString(),
+  });
   return await db.query.session.findFirst({
     where: eq(session.id, sessionID),
     with: { blocks: true },
