@@ -30,10 +30,10 @@ export async function getProject(projectID: number) {
         invoiceTotal: computedProject.sessions.reduce((acc, s) => acc + (s.duration ?? 0), 0) * (computedProject.billingRate ?? 0),
         startDate: new Date(Math.min(...computedProject.sessions.map(s => s.date.getTime()))),
         endDate: new Date(Math.max(...computedProject.sessions.map(s => s.date.getTime())))
-
-
     }
 }
+
+export type getProjectReturnType = Awaited<ReturnType<typeof getProject>>;
 
 export async function getProjects() {
     return await db.query.project.findMany();
